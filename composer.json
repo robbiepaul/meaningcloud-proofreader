@@ -1,0 +1,26 @@
+{
+    "name": "robbiep/meaningcloud-proofreader",
+    "description": "Proof reader API provided by MeaningCloud",
+    "keywords": ["grammer", "spellchecker", "meaningcloud"],
+    "homepage": "https://github.com/robbiepaul/meaningcloud-proofreader",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robbie Paul",
+            "email": "robbiepaul@me.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "RobbieP\\MeaningCloudProofReader\\": ["src", "tests"]
+        }
+    }
+}
