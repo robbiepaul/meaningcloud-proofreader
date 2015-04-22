@@ -53,7 +53,7 @@ class MeaningCloud
 
     private function setParams($params)
     {
-        $this->documentManager->getParams();
+        $this->params = array_merge($this->params, $this->documentManager->getParams());
         $this->params['key'] = $this->getApiKey();
         $this->params['lang'] = 'en';
         $this->params = array_merge($this->params, $params);
