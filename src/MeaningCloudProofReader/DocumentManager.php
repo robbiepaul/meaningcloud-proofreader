@@ -3,6 +3,10 @@
 namespace RobbieP\MeaningCloudProofReader;
 
 
+use RobbieP\MeaningCloudProofReader\Core\FileDocument;
+use RobbieP\MeaningCloudProofReader\Core\TextDocument;
+use RobbieP\MeaningCloudProofReader\Core\UrlDocument;
+
 class DocumentManager {
 
     const FILE  = 'file';
@@ -27,6 +31,11 @@ class DocumentManager {
         }
     }
 
+    public function getParams()
+    {
+        return $this->document->toArray();
+    }
+
     private function setType($type)
     {
         $this->type = $type;
@@ -45,16 +54,19 @@ class DocumentManager {
     private function setFile($data)
     {
         $this->setType(self::FILE);
+        $this->document = new FileDocument($data);
     }
 
     private function setUrl($data)
     {
         $this->setType(self::URL);
+        $this->document = new UrlDocument($data);
     }
 
     private function setText($data)
     {
         $this->setType(self::TEXT);
+        $this->document = new TextDocument($data);
     }
 
 }

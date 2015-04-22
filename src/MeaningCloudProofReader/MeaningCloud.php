@@ -8,16 +8,20 @@ class MeaningCloud
 
     protected $config;
     protected $documentManager;
+    protected $client;
+    protected $params = [];
 
     public function __construct($data)
     {
         $this->config = new Config($data);
     }
 
-    public function check($data)
+    public function check($data, $params = [])
     {
+
         $this->documentManager = new DocumentManager($data);
-        $this->getApiKey();
+        $this->setParams($params);
+        $resp = $this->getClient()->post($this->params);
     }
 
     public static function url($endpoint = '')
@@ -25,6 +29,13 @@ class MeaningCloud
         return self::API_URL . self::API_SERVICE . '-' . self::API_VERSION . '/' . $endpoint;
     }
 
+    protected function getClient()
+    {
+        if( is_null($this->client) ) {
+            $this->client = new Client();
+        }
+        return $this->client;
+    }
 
     protected function getApiKey()
     {
@@ -39,6 +50,12 @@ class MeaningCloud
         return ! empty( $this->config->get('api_key') );
     }
 
+    private function setParams($params)
+    {
+        $this->documentManager->getParams();
+        $this->params['api_key'] = $this->getApiKey();
+        $this->params = array_merge($this->params, $params);
+    }
 
 
 }

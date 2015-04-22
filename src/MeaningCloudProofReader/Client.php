@@ -24,9 +24,13 @@ class Client {
 
     }
 
-    public function post()
+    public function post($params, $endpoint = '')
     {
-
+        $body = [
+            'body' => $params
+        ];
+        $response = $this->adapter->post(MeaningCloud::url($endpoint), $body);
+        return $response;
     }
 
 }
