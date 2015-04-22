@@ -22,6 +22,7 @@ class MeaningCloud
         $this->documentManager = new DocumentManager($data);
         $this->setParams($params);
         $resp = $this->getClient()->post($this->params);
+        return $resp;
     }
 
     public static function url($endpoint = '')
