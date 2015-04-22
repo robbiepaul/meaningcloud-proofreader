@@ -10,6 +10,7 @@ class DocumentManager {
     const URL   = 'url';
 
     protected $type;
+    protected $document;
 
     public function __construct($data)
     {
